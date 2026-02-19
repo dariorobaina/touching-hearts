@@ -108,7 +108,7 @@
   import emailjs from "@emailjs/browser";
 
   // Inicializar EmailJS
-  emailjs.init("Ufd-t0-ogxar20iFW");
+  emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
   const form = document.getElementById("contact-form") as HTMLFormElement;
   const statusMessage = document.getElementById(
@@ -119,7 +119,11 @@
     e.preventDefault();
 
     try {
-      await emailjs.sendForm("service_huwu8w3", "template_wb7rbyt", form);
+      await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form,
+      );
 
       // Éxito
       if (statusMessage) {

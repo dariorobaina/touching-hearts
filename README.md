@@ -21,6 +21,7 @@ Landing page built with **Astro** + **Tailwind CSS** for Touching Hearts Medical
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - npm
 
@@ -89,4 +90,3 @@ VITE_EMAILJS_PUBLIC_KEY=your_public_key
 - **Phone:** (813) 850-3252
 - **Email:** sahilygurre@gmail.com
 - **Location:** Tampa, Florida
-
