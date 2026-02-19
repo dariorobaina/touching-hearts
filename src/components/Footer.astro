@@ -1,0 +1,46 @@
+---
+// Footer.astro - Pie de página
+---
+
+<footer class="bg-darkBg text-white pt-20 pb-10 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    <div class="flex flex-col items-center text-center space-y-8 mb-16">
+      <div
+        class="w-24 h-24 bg-white/10 rounded-lg flex items-center justify-center"
+      >
+        <img
+          alt="Touching Hearts Logo"
+          class="h-16 w-auto"
+          src="/images/logo.png"
+        />
+      </div>
+      <div class="space-y-2">
+        <h5 class="text-lg font-bold uppercase tracking-widest text-white">
+          Touching Hearts Medical Services, LLC
+        </h5>
+        <p class="text-slate-400 font-medium">
+          Professional • Safe • Convenient
+        </p>
+      </div>
+    </div>
+    <div
+      class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500"
+    >
+      <p>© 2024 Touching Hearts Medical Services. All rights reserved.</p>
+      <div class="flex gap-8">
+        <span>Licensed & Insured</span>
+        <span>FL Medical License #8138503252</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Fixed Mobile Contact Button -->
+<div class="fixed bottom-6 right-6 z-40 lg:hidden">
+  <a
+    class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-2xl animate-bounce"
+    href="tel:8138503252"
+  >
+    <span class="material-symbols-outlined text-3xl">call</span>
+  </a>
+</div>

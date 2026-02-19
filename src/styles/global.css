@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+	scroll-behavior: smooth;
+}
+
+/* Estilos personalizados opcionales */
+.hexagon-bg {
+	background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKsnak_VFiZQi8DCgNVjUdlxvKxzT2mfelZ6FL5aNT8HJjglhmS-4TLwDhBgLTy8dLWLNU0Seb3WtVfEe3V_zv6uNwXMb0_9A_FnBPVtQHbAVUB7ikV_tGSnDTub_KPmKifEVQkjwX_e03fxpv797O-ZBq45POzId7ZiqkHwGpMQal0YJ5Onl2WDkZodDJjZcNtFkfTJEsD8wRHV7xD7zo-Tc3StO_DdPzDpA6OBXJV-30BDTxZX6FK_FPA9iGca1171U7lQ5FTauP");
+	background-repeat: repeat;
+	background-size: 80px;
+	opacity: 0.03;
+}
+
+@layer components {
+	.btn-primary {
+		@apply px-6 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-secondary transition-colors;
+	}
+
+	.btn-secondary {
+		@apply px-6 py-3 bg-secondary text-white rounded-lg font-semibold hover:bg-primary transition-colors;
+	}
+}

@@ -1,0 +1,147 @@
+---
+// ContactForm.astro - Formulario de contacto con EmailJS
+---
+
+<section class="py-24 bg-white" id="contact">
+  <div class="max-w-7xl mx-auto px-4">
+    <div
+      class="bg-slate-50 rounded-[2rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row"
+    >
+      <div class="lg:w-1/3 bg-accent p-12 text-white relative">
+        <div class="relative z-10">
+          <h2 class="text-3xl font-black mb-6">Get in Touch</h2>
+          <p class="opacity-80 mb-12">
+            Have questions about our treatments or want to schedule a home
+            visit? Fill out the form and our team will contact you shortly.
+          </p>
+          <div class="space-y-8">
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined">phone_in_talk</span>
+              <div>
+                <p class="text-sm font-bold uppercase opacity-60">Call Us</p>
+                <p class="text-lg font-bold">(813) 850-3252</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined">mail</span>
+              <div>
+                <p class="text-sm font-bold uppercase opacity-60">Email Us</p>
+                <p class="text-lg font-bold">sahilygurre@gmail.com</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <span class="material-symbols-outlined">location_on</span>
+              <div>
+                <p class="text-sm font-bold uppercase opacity-60">Visit Us</p>
+                <p class="text-lg font-bold">Tampa, Florida</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lg:w-2/3 p-12">
+        <form id="contact-form" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-slate-700">Your Name</label>
+              <input
+                class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                placeholder="John Doe"
+                type="text"
+                name="from_name"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label class="text-sm font-bold text-slate-700"
+                >Phone Number</label
+              >
+              <input
+                class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+                placeholder="(123) 456-7890"
+                type="tel"
+                name="phone"
+                required
+              />
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm font-bold text-slate-700">Email Address</label
+            >
+            <input
+              class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+              placeholder="john@example.com"
+              type="email"
+              name="from_email"
+              required
+            />
+          </div>
+          <div class="space-y-2">
+            <label class="text-sm font-bold text-slate-700"
+              >How can we help?</label
+            >
+            <textarea
+              class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
+              placeholder="Tell us about the services you're interested in..."
+              rows="4"
+              name="message"
+              required></textarea>
+          </div>
+          <button
+            class="w-full py-4 bg-primary text-white rounded-xl font-black text-lg hover:brightness-110 transition-all shadow-lg shadow-primary/30 uppercase tracking-widest"
+            type="submit"
+          >
+            Send Message
+          </button>
+          <div
+            id="status-message"
+            class="hidden p-4 rounded-lg text-center font-bold"
+          >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import emailjs from "@emailjs/browser";
+
+  // Inicializar EmailJS
+  emailjs.init("Ufd-t0-ogxar20iFW");
+
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const statusMessage = document.getElementById(
+    "status-message",
+  ) as HTMLElement;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    try {
+      await emailjs.sendForm("service_huwu8w3", "template_wb7rbyt", form);
+
+      // Éxito
+      if (statusMessage) {
+        statusMessage.textContent =
+          "✅ Message sent successfully! We will contact you soon.";
+        statusMessage.classList.remove("hidden", "bg-red-100", "text-red-700");
+        statusMessage.classList.add("bg-green-100", "text-green-700");
+      }
+      form.reset();
+    } catch (error) {
+      // Error
+      if (statusMessage) {
+        statusMessage.textContent =
+          "❌ Failed to send message. Please try again.";
+        statusMessage.classList.remove(
+          "hidden",
+          "bg-green-100",
+          "text-green-700",
+        );
+        statusMessage.classList.add("bg-red-100", "text-red-700");
+      }
+      console.error("EmailJS error:", error);
+    }
+  });
+</script>

@@ -1,0 +1,124 @@
+---
+// Header component
+---
+
+<header
+  class="h-20 sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-slate-200"
+>
+  <div class="max-w-7xl mx-auto px-4 h-full flex items-center justify-between">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <img src="/images/logo2.png" class="h-16" alt="Touching Hearts Logo" />
+      <span class="hidden sm:block font-bold">
+        <span class="text-secondary">Touching</span>
+        <span class="text-primary">Hearts</span>
+      </span>
+    </div>
+
+    <!-- Navigation Menu Desktop -->
+    <nav class="hidden md:flex gap-8">
+      <a
+        href="#services"
+        class="text-secondary font-semibold hover:text-primary transition-colors duration-200"
+        >Services</a
+      >
+      <a
+        href="#how-it-works"
+        class="text-secondary font-semibold hover:text-primary transition-colors duration-200"
+        >How It Works</a
+      >
+      <a
+        href="#treatments"
+        class="text-secondary font-semibold hover:text-primary transition-colors duration-200"
+        >Treatments</a
+      >
+      <a
+        href="#about"
+        class="text-secondary font-semibold hover:text-primary transition-colors duration-200"
+        >About us</a
+      >
+      <a
+        href="#contact"
+        class="text-secondary font-semibold hover:text-primary transition-colors duration-200"
+        >Contact</a
+      >
+    </nav>
+
+    <!-- Hamburger Button (Mobile Only) -->
+    <button
+      id="menu-toggle"
+      class="md:hidden p-2 text-secondary hover:text-primary transition-colors"
+      aria-label="Toggle menu"
+    >
+      <svg
+        class="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu (Hidden by default) -->
+  <nav
+    id="mobile-menu"
+    class="hidden md:hidden absolute top-20 left-0 right-0 bg-white border-b border-slate-200 shadow-lg animate-in"
+  >
+    <div class="flex flex-col px-4 py-6 gap-1 max-w-7xl mx-auto w-full">
+      <a
+        href="#services"
+        class="text-secondary font-semibold hover:text-primary hover:bg-slate-50 transition-colors py-3 px-3 rounded-lg"
+      >
+        Services
+      </a>
+      <a
+        href="#how-it-works"
+        class="text-secondary font-semibold hover:text-primary hover:bg-slate-50 transition-colors py-3 px-3 rounded-lg"
+      >
+        How It Works
+      </a>
+      <a
+        href="#treatments"
+        class="text-secondary font-semibold hover:text-primary hover:bg-slate-50 transition-colors py-3 px-3 rounded-lg"
+      >
+        Treatments
+      </a>
+      <a
+        href="#about"
+        class="text-secondary font-semibold hover:text-primary hover:bg-slate-50 transition-colors py-3 px-3 rounded-lg"
+      >
+        About us
+      </a>
+      <a
+        href="#contact"
+        class="text-white font-semibold bg-primary hover:bg-primary/90 transition-colors py-3 px-3 rounded-lg mt-2"
+      >
+        Contact
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // JavaScript del lado del cliente para el toggle
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  menuToggle?.addEventListener("click", () => {
+    mobileMenu?.classList.toggle("hidden");
+  });
+
+  // Cerrar menú al hacer click en un enlace
+  const mobileLinks = mobileMenu?.querySelectorAll("a");
+  mobileLinks?.forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu?.classList.add("hidden");
+    });
+  });
+</script>

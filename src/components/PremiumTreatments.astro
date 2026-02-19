@@ -1,0 +1,99 @@
+---
+// PremiumTreatments.astro - Galería de tratamientos
+const treatments = [
+  {
+    id: 1,
+    name: "NAD+ Therapy",
+    subtitle: "500mg",
+    price: "$65.00",
+    category: "Cellular Regeneration",
+    description:
+      "Enhance brain function, DNA repair, and energy levels at a cellular level.",
+    image: "/images/Nad.png",
+  },
+  {
+    id: 2,
+    name: "Lipo-C + B12",
+    subtitle: "10 ml",
+    price: "$70.00",
+    category: "Metabolism Focus",
+    description:
+      "Support healthy weight loss and metabolic function with this powerful blend.",
+    image: "/images/LIPO-C.png",
+  },
+  {
+    id: 3,
+    name: "Vitamin B12",
+    subtitle: "IM INJECTION",
+    price: "$35.00",
+    category: "Energy Boost",
+    description:
+      "Combat fatigue and improve mood with a concentrated dose of B12.",
+    image: "/images/B12.webp",
+  },
+  {
+    id: 4,
+    name: "Glutathione",
+    subtitle: "1500mg",
+    price: "$70.00",
+    category: "Immune Support",
+    description: "The master antioxidant for detoxing and glowing skin health.",
+    image: "/images/Glutathione.webp",
+  },
+  {
+    id: 5,
+    name: "Other Vitamin Injections",
+    subtitle: "Various",
+    price: "$35.00",
+    category: "Wellness",
+    description:
+      "Customized vitamin blends tailored to your specific health needs and goals.",
+    image: "/images/injections.jpg",
+  },
+];
+---
+
+<section class="py-20 bg-white" id="treatments">
+  <div class="max-w-7xl mx-auto px-4">
+    <div
+      class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6 text-center md:text-left"
+    >
+      <div>
+        <h2 class="text-secondary text-3xl lg:text-4xl font-black mb-4">
+          Premium Treatments
+        </h2>
+        <p class="text-slate-500">
+          Clinical grade nutrients for peak performance.
+        </p>
+      </div>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+      {
+        treatments.map((treatment) => (
+          <div class="bg-slate-50 rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+            <div class="aspect-video relative overflow-hidden">
+              <img
+                alt={treatment.name}
+                class="w-full h-full object-cover"
+                src={treatment.image}
+              />
+              <div class="absolute top-4 right-4 bg-secondary text-white px-3 py-1 rounded-full text-sm font-bold">
+                {treatment.price}
+              </div>
+            </div>
+            <div class="p-6">
+              <h5 class="font-bold text-lg mb-2">{treatment.name}</h5>
+              <p class="text-xs text-slate-500 mb-2 uppercase tracking-widest font-bold">
+                {treatment.subtitle}
+              </p>
+              <p class="text-xs text-slate-500 mb-4 uppercase tracking-widest font-bold">
+                {treatment.category}
+              </p>
+              <p class="text-sm text-slate-600">{treatment.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
