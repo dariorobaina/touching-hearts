@@ -43,7 +43,13 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
         </div>
       </div>
       <div class="lg:w-2/3 p-12">
-        <form id="contact-form" class="space-y-6">
+        <form 
+          id="contact-form" 
+          class="space-y-6"
+          data-service-id={EMAILJS_SERVICE_ID}
+          data-template-id={EMAILJS_TEMPLATE_ID}
+          data-public-key={EMAILJS_PUBLIC_KEY}
+        >
           <div class="grid md:grid-cols-2 gap-6">
             <div class="space-y-2">
               <label class="text-sm font-bold text-slate-700">Your Name</label>
@@ -107,22 +113,32 @@ const EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
   </div>
 </section>
 
-<script
-  define:vars={{ EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY }}
->
+<script>
   import emailjs from "@emailjs/browser";
 
-  // Inicializar EmailJS
-  emailjs.init(EMAILJS_PUBLIC_KEY);
-
-  const form = document.getElementById("contact-form");
+  const form = document.getElementById("contact-form") as HTMLFormElement;
   const statusMessage = document.getElementById("status-message");
+
+  // Leer credenciales desde data attributes
+  const serviceId = form?.dataset.serviceId;
+  const templateId = form?.dataset.templateId;
+  const publicKey = form?.dataset.publicKey;
+
+  // Inicializar EmailJS
+  if (publicKey) {
+    emailjs.init(publicKey);
+  }
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    if (!serviceId || !templateId) {
+      console.error("EmailJS configuration missing");
+      return;
+    }
+
     try {
-      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+      await emailjs.sendForm(serviceId, templateId, form);
 
       // Éxito
       if (statusMessage) {
