@@ -60,7 +60,7 @@ const EMAILJS_PUBLIC_KEY =
             </div>
             <div class="space-y-2">
               <label class="text-sm font-bold text-slate-700"
-                >Phone Number</label
+                >Phone Number #</label
               >
               <input
                 class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none"
@@ -120,8 +120,17 @@ const EMAILJS_PUBLIC_KEY =
   define:vars={{ EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY }}
 >
   (function () {
+    const hasPublicKey = Boolean(EMAILJS_PUBLIC_KEY);
+
+    if (!hasPublicKey) {
+      console.error(
+        "EmailJS error: Missing PUBLIC_EMAILJS_PUBLIC_KEY in the build.",
+      );
+      return;
+    }
+
     // Inicializar EmailJS
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
     const form = document.getElementById("contact-form");
     const statusMessage = document.getElementById("status-message");
@@ -130,7 +139,9 @@ const EMAILJS_PUBLIC_KEY =
       e.preventDefault();
 
       try {
-        await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+        await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form, {
+          publicKey: EMAILJS_PUBLIC_KEY,
+        });
 
         // Éxito
         if (statusMessage) {
