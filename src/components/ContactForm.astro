@@ -1,5 +1,8 @@
 ---
 // ContactForm.astro - Formulario de contacto con EmailJS
+const EMAILJS_SERVICE_ID = import.meta.env.PUBLIC_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY;
 ---
 
 <section class="py-24 bg-white" id="contact">
@@ -104,26 +107,22 @@
   </div>
 </section>
 
-<script>
+<script
+  define:vars={{ EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY }}
+>
   import emailjs from "@emailjs/browser";
 
   // Inicializar EmailJS
-  emailjs.init(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY);
+  emailjs.init(EMAILJS_PUBLIC_KEY);
 
-  const form = document.getElementById("contact-form") as HTMLFormElement;
-  const statusMessage = document.getElementById(
-    "status-message",
-  ) as HTMLElement;
+  const form = document.getElementById("contact-form");
+  const statusMessage = document.getElementById("status-message");
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     try {
-      await emailjs.sendForm(
-        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
-        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
-        form,
-      );
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
 
       // Éxito
       if (statusMessage) {
