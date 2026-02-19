@@ -108,7 +108,7 @@
   import emailjs from "@emailjs/browser";
 
   // Inicializar EmailJS
-  emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  emailjs.init(import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY);
 
   const form = document.getElementById("contact-form") as HTMLFormElement;
   const statusMessage = document.getElementById(
@@ -120,8 +120,8 @@
 
     try {
       await emailjs.sendForm(
-        import.meta.env.VITE_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
         form,
       );
 
